@@ -10,7 +10,7 @@ function Home() {
     <>
 
       <main>
-        <Box>This is index page</Box>
+        <Box>Welcome to 1xbet website. Please enjoy!!</Box>
       </main>
     </>
   );

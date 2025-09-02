@@ -4,15 +4,11 @@ import {
   Toolbar,
   Typography,
   Button,
-  Menu,
-  MenuItem,
   Box,
-  ListItemIcon,
 } from "@mui/material";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import FunctionsIcon from "@mui/icons-material/Functions";
-import Divider from "@mui/material/Divider";
 import PersonIcon from "@mui/icons-material/Person";
 import useBearStore from "@/store/useBearStore";
 
@@ -22,11 +18,13 @@ const NavigationLayout = ({ children }) => {
 
   return (
     <>
-      <AppBar position="sticky" sx={{ backgroundColor: "#ff5e15" }}>
+      <AppBar position="sticky" sx={{ backgroundColor: "#0b5394" }}>
         <Toolbar>
-          <Link href={"/"}>
-            <FunctionsIcon sx={{ color: "#ffffff" }} fontSize="large" />
+          {/* Logo / Home */}
+          <Link href={"/"} style={{ textDecoration: "none" }}>
+            <FunctionsIcon sx={{ color: "#ffffff", mr: 1 }} fontSize="large" />
           </Link>
+
           <Typography
             variant="body1"
             sx={{
@@ -35,39 +33,57 @@ const NavigationLayout = ({ children }) => {
               color: "#ffffff",
               padding: "0 10px",
               fontFamily: "Prompt",
-            }}>
+            }}
+          >
             {appName}
           </Typography>
-          <NavigationLink href="/page1" label="Page1" />
-          <div style={{ flexGrow: 1 }} />
+
+          {/* Navigation links */}
+          <NavigationLink href="/login" label="Login" />
+          <NavigationLink href="/games" label="Game Selection" />
+          <NavigationLink href="/spinner" label="Spinner" />
+          <NavigationLink href="/balance" label="Balance" />
+
+          {/* Spacer */}
+          <Box sx={{ flexGrow: 1 }} />
+
+          {/* Profile button */}
           <Button
-            color="#ffffff"
             onClick={() => {
-              router.push("/page2");
-            }}>
-            <PersonIcon />
+              router.push("/profile");
+            }}
+          >
+            <PersonIcon sx={{ color: "#ffffff" }} />
           </Button>
         </Toolbar>
       </AppBar>
+
       <main>{children}</main>
     </>
   );
 };
 
 const NavigationLink = ({ href, label }) => {
+  const router = useRouter();
+  const isActive = router.pathname === href;
+
   return (
     <Link href={href} style={{ textDecoration: "none" }}>
       <Typography
         variant="body1"
         sx={{
           fontSize: "14px",
-          fontWeight: 500,
-          // textTransform: "uppercase",
-          color: "#fff",
-          padding: "0 10px", // Add padding on left and right
-        }}>
+          fontWeight: isActive ? 700 : 500,
+          color: isActive ? "#FFD700" : "#fff", // Gold for active
+          padding: "0 12px",
+          borderBottom: isActive ? "2px solid #FFD700" : "none",
+          "&:hover": {
+            textDecoration: "underline",
+          },
+        }}
+      >
         {label}
-      </Typography>{" "}
+      </Typography>
     </Link>
   );
 };
