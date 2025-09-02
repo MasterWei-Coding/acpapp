@@ -8,8 +8,11 @@ export default function Document(props) {
   return (
     <Html lang="en">
       <Head>
+        {/* Add Winwheel.js */}
+        <script src="/js/Winwheel.min.js" defer></script>
         <DocumentHeadTags {...props} />
       </Head>
+      
       <body>
         <Main />
         <NextScript />
