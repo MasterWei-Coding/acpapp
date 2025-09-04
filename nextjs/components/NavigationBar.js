@@ -39,9 +39,10 @@ const NavigationLayout = ({ children }) => {
           </Typography>
 
           {/* Navigation links */}
-          <NavigationLink href="/login" label="Login" />
-          <NavigationLink href="/games" label="Game Selection" />
+          <NavigationLink href="/register" label="Login" />
+          <NavigationLink href="/game" label="Game Selection" />
           <NavigationLink href="/spinner" label="Spinner" />
+          <NavigationLink href="/rockpaperscissors" label="rpc" />
           <NavigationLink href="/balance" label="Balance" />
 
           {/* Spacer */}
